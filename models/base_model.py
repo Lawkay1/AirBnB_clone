@@ -16,8 +16,8 @@ class BaseModel:
 
     def __str__(self):
         "print name class, id and doc"
-        return "[{}] {} {}".format(self.__class__.__name__,
-                                   self.id, self.__dict__)
+        nameClass = self.__class__.__name__
+        return "[{}] ({}) {}".format(nameClass, self.id, self.__dict__)
 
     def save(self):
         "save update"
