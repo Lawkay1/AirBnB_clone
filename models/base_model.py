@@ -8,8 +8,6 @@ from datetime import datetime
 
 class BaseModel:
     " class base"
-
-
     def __init__(self):
         "initialize instance"
         self.id = str(uuid.uuid4())
@@ -18,7 +16,8 @@ class BaseModel:
 
     def __str__(self):
         "print name class, id and doc"
-        return "[{}] {} {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] {} {}".format(self.__class__.__name__,
+                                   self.id, self.__dict__)
 
     def save(self):
         "save update"
