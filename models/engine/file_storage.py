@@ -2,60 +2,8 @@
 """
 File storage:  serializes instances to a JSON file and
     deserializes JSON file to instances:
-"""clear data on __object (cache)"""
-        self.__objects.clear()
+"""
 
-    def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id"""
-        if obj is not None:
-            key = '{}.{}'.format(type(obj).__name__, obj.id)
-            self.__objects[key] = obj
-
-    def save(self):
-        """ serializes __objects to the JSON file (path: __file_path)"""
- obj_id, attr, value):
-        """update object with id `obj_id`"""
-        model = self.__objects["{}.{}".format(obj_name, obj_id)]
-        setattr(model, attr, value)
-
-    def find(self, obj_name, obj_id):
-        """find object with id `obj_id`"""
-        return self.__objects["{}.{}".format(obj_name, obj_id)]
-
-    def delete(self, obj_name, obj_id):
-
-
-    def all(self):
-        """return the class atribute objects"""
-        return FileStorage.__objects
-
-    def reset(self):
-                file = FileStorage.__file_path
-
-        with open(file, mode="w", encoding="utf-8") as f:
-            f.write(
-                json.dumps(
-                    FileStorage.__objects,
-                    cls=models.base_model.BaseModelEncoder
-m__(self, key):
-        """get item"""
-        try:
-            return super(Objects, self).__getitem__(key)
-        except Exception as e:
-            raise Exception("** no instance found **")
-
-    def pop(self, key):
-        """pop item"""
-        try:
-            return super(Objects, self).pop(key)
-        except Exception as e:
-            raise Exception("** no instance found **")
-
-
-    def update(self, obj_name,        """
-        delete object with id `obj_id`
-        """
-        return self.__objects.pop("{}.{}".format(obj_name, obj_id))"""
 
 import json
 import models
@@ -65,7 +13,20 @@ import os
 class Objects(dict):
     """class object"""
 
-    def __getite
+    def __getitem__(self, key):
+        """get"""
+        try:
+            return super(Objects, self).__getitem__(key)
+        except Exception as e:
+            raise Exception("** no instance found **")
+
+    def pop(self, key):
+        """ pop"""
+        try:
+            return super(Objects, self).pop(key)
+        except Exception as e:
+            raise Exception("** no instance found **")
+
 
 class FileStorage:
     """
@@ -77,12 +38,37 @@ class FileStorage:
     __objects = Objects()
 
     def __init__(self):
-        """init method"""
-        super().__init__()                    )
+        """initialize method"""
+        super().__init__()
+
+    def all(self):
+        """return the class atribute objects"""
+        return FileStorage.__objects
+
+    def reset(self):
+        """clear data (cache)"""
+        self.__objects.clear()
+
+    def new(self, obj):
+        """sets in __objects the objid"""
+        if obj is not None:
+            key = '{}.{}'.format(type(obj).__name__, obj.id)
+            self.__objects[key] = obj
+
+    def save(self):
+        """ serializes __objects to t (path: __file_path)"""
+        file = FileStorage.__file_path
+
+        with open(file, mode="w", encoding="utf-8") as f:
+            f.write(
+                json.dumps(
+                    FileStorage.__objects,
+                    cls=models.base_model.BaseModelEncoder
+                    )
                 )
 
     def reload(self):
-        """deserializes the JSON file to __objects"""
+        """deserializes the o __objects"""
 
         file = FileStorage.__file_path
         if not os.path.exists(file):
@@ -98,3 +84,19 @@ class FileStorage:
 
         except Exception as e:
             print(e)
+
+    def update(self, obj_name, obj_id, attr, value):
+        """update objec id `obj_id`"""
+        model = self.__objects["{}.{}".format(obj_name, obj_id)]
+        setattr(model, attr, value)
+
+    def find(self, obj_name, obj_id):
+        """find objid `obj_id`"""
+        return self.__objects["{}.{}".format(obj_name, obj_id)]
+
+    def delete(self, obj_name, obj_id):
+        """
+        delete object `obj_id`
+        """
+        return self.__objects.pop("{}.{}".format(obj_name, obj_id))
+
