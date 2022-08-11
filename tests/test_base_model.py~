@@ -1,0 +1,26 @@
+#!/usr/bin/python3
+"test file base model"
+
+
+import unittest
+
+
+class TestAirbnbProjects(unittest.TestCase):
+
+    def setUp(self):
+        self.model = BaseModel()
+        return super().setUp()
+
+    def tearDown(self):
+        del(self.model)
+        if os.path.exists("file.json"):
+            os.remove("file.json")
+        models.storage.reset()
+        return super().tearDown()
+
+    def test_create_istance(self):
+        """ Test case init instance"""
+        self.assertIsInstance(self.model, BaseModel)
+        
+if __name__ == '__main__':
+    unittest.main()

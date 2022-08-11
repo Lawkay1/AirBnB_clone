@@ -1,0 +1,13 @@
+#!/usr/bin/python3
+"test file base model"
+
+
+import unittest
+
+
+class TestAirbnbProjects(unittest.TestCase):
+
+    def test_base_model(self):
+        
+if __name__ == '__main__':
+    unittest.main()
