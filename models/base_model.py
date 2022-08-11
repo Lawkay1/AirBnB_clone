@@ -25,8 +25,12 @@ class BaseModel:
 
     def to_dict(self):
         "return dictionnary representation"
-        own_dict = self.__dict__.copy()
+        own_dict = dict()
         own_dict['__class__'] = self.__class__.__name__
-        own_dict['created_at'] = own_dict['created_at'].isoformat()
-        own_dict['updated_at'] = own_dict['updated_at'].isoformat()
+
+        for key, value in self.__dict__.items():
+            if key in ('created_at', 'updated_at'):
+                own_dict[key] = value.isoformat()
+            else:
+                own_dict[key] = value
         return own_dict
